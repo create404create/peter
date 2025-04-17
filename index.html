@@ -3,167 +3,90 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Peter's Horror Surprise!</title>
+    <title>System Error - Please Wait</title>
     <style>
-        /* General Styles */
         body {
-            font-family: Arial, sans-serif;
-            background-color: #000;
+            background-color: #111;
             color: white;
             text-align: center;
-            margin-top: 50px;
-            padding: 0;
+            font-family: 'Courier New', Courier, monospace;
+            margin-top: 20%;
         }
 
         h1 {
-            font-size: 3rem;
             color: red;
+            font-size: 2.5rem;
+            animation: flash 1s infinite;
         }
 
-        .glitch {
-            font-size: 2rem;
-            color: #00FF00;
-            text-shadow: 0 0 5px #FF0000, 0 0 10px #FF0000, 0 0 15px #FF0000;
-            animation: glitch-animation 0.2s infinite linear alternate-reverse;
-        }
-
-        @keyframes glitch-animation {
-            0% { text-shadow: 0 0 5px #FF0000, 0 0 10px #FF0000, 0 0 15px #FF0000; }
-            50% { text-shadow: -2px -2px 0px #FF0000, 2px 2px 0px #FF0000; }
-            100% { text-shadow: -4px -4px 0px #FF0000, 4px 4px 0px #FF0000; }
-        }
-
-        .confuse {
-            font-size: 2rem;
-            color: #FF00FF;
-            animation: confuse-animation 0.5s infinite linear alternate;
-        }
-
-        @keyframes confuse-animation {
-            0% { transform: rotate(0deg); }
-            50% { transform: rotate(360deg); }
-            100% { transform: rotate(0deg); }
-        }
-
-        .random-messages {
-            display: none;
-            color: yellow;
+        p {
             font-size: 1.5rem;
+            color: yellow;
+        }
+
+        .error-message {
+            display: none;
             margin-top: 20px;
+            padding: 20px;
+            background-color: #330000;
+            border: 2px solid red;
+            font-size: 1.2rem;
+            color: white;
+            animation: shake 0.5s infinite;
         }
 
-        .show-message {
-            animation: blink-animation 1s infinite;
+        @keyframes flash {
+            0% { color: red; }
+            50% { color: yellow; }
+            100% { color: red; }
         }
 
-        @keyframes blink-animation {
-            50% { opacity: 0; }
+        @keyframes shake {
+            0% { transform: translateX(0); }
+            25% { transform: translateX(-10px); }
+            50% { transform: translateX(10px); }
+            75% { transform: translateX(-10px); }
+            100% { transform: translateX(0); }
         }
-
-        /* Horror Image Styling */
-        #horror-images img {
-            width: 70%;
-            max-width: 400px;
-            margin: 10px;
-            border: 3px solid red;
-            border-radius: 10px;
-        }
-
-        /* Make sure the prank only works on PC */
-        @media (max-width: 768px) {
-            body {
-                display: none; /* Hide prank on mobile devices */
-            }
-        }
-
     </style>
 </head>
 <body>
-    <h1>Peter's Horror Surprise!</h1>
-    <div class="glitch">
-        Wait for it...
-    </div>
-    <div class="confuse">
-        Are you ready for the horror effect?
+    <h1>System Error Detected!</h1>
+    <p>Warning! Critical system failure detected. Please do not turn off your computer.</p>
+    <button onclick="triggerError()">Click Here to Fix the Error</button>
+
+    <div class="error-message" id="error1">
+        <p>ERROR: 0x000000FF - System failure at sector 08D9. Fatal error! Please contact IT support.</p>
     </div>
 
-    <div class="random-messages" id="message1">
-        <p>What's happening...?!</p>
-    </div>
-    <div class="random-messages" id="message2">
-        <p>This is not good...</p>
-    </div>
-    <div class="random-messages" id="message3">
-        <p>Get out of here... NOW!</p>
+    <div class="error-message" id="error2">
+        <p>ERROR: 0x000000FE - Access Denied. Unauthorized connection attempt detected. Alert level: HIGH.</p>
     </div>
 
-    <!-- Horror Images -->
-    <div id="horror-images">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/a/a5/Horror_Mask.jpg" alt="Horror Image 1">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/c/c6/Scream_Mask.jpg" alt="Horror Image 2">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/e/e6/Horror_Face.jpg" alt="Horror Image 3">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/1/12/Scary_Horror_Man.jpg" alt="Horror Image 4">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/7/7b/Scary_Face.jpg" alt="Horror Image 5">
+    <div class="error-message" id="error3">
+        <p>ERROR: 0x000000FD - Virus detected! Please disconnect your network immediately to prevent further damage.</p>
     </div>
 
-    <!-- Horror Sound -->
-    <audio id="horror-sound" preload="auto">
-        <source src="https://www.soundjay.com/button/beep-07.wav" type="audio/wav">
-        Your browser does not support the audio element.
-    </audio>
-
-    <button onclick="playHorrorSound()">Click to Start the Horror</button>
+    <div class="error-message" id="error4">
+        <p>ERROR: 0x000000FB - Critical memory corruption. Please reboot system immediately to avoid data loss.</p>
+    </div>
 
     <script>
-        // Function to play the horror sound when the button is clicked
-        function playHorrorSound() {
-            var sound = document.getElementById('horror-sound');
-            sound.play();
-        }
+        // Function to trigger fake errors at random intervals
+        function triggerError() {
+            document.querySelector("h1").innerHTML = "SYSTEM CRITICAL ERROR";
+            document.querySelector("p").innerHTML = "Your system is in danger. Please wait...";
 
-        // Function to show random messages
-        const messages = ['#message1', '#message2', '#message3'];
-        let messageIndex = 0;
-
-        function showRandomMessages() {
-            setInterval(() => {
-                document.querySelector(messages[messageIndex]).classList.add('show-message');
-                setTimeout(() => {
-                    document.querySelector(messages[messageIndex]).classList.remove('show-message');
-                }, 3000);
-                messageIndex = (messageIndex + 1) % messages.length;
-            }, 4000);
-        }
-
-        // Randomize the glitch
-        function randomGlitch() {
-            setInterval(() => {
-                document.querySelector('.glitch').style.textShadow = Math.random() < 0.5 ? '0 0 5px red' : '0 0 5px yellow';
-            }, 500);
-        }
-
-        // Show horror images randomly
-        function randomHorrorImages() {
-            const images = document.querySelectorAll('#horror-images img');
-            setInterval(() => {
-                const randomImage = images[Math.floor(Math.random() * images.length)];
-                randomImage.style.opacity = 1;
-                setTimeout(() => {
-                    randomImage.style.opacity = 0;
-                }, 2000);
-            }, 3000);
-        }
-
-        // Trigger functions after the page loads
-        window.onload = function() {
-            showRandomMessages();
-            randomGlitch();
-            randomHorrorImages();
-
-            // Add a random page reload to mess with Peter
             setTimeout(() => {
-                location.reload();
-            }, 15000);  // Reload page after 15 seconds for extra chaos
+                var errors = ['error1', 'error2', 'error3', 'error4'];
+                var randomError = errors[Math.floor(Math.random() * errors.length)];
+                document.getElementById(randomError).style.display = 'block';
+            }, 2000);  // Show error message after 2 seconds
+
+            // Make the page flicker
+            setInterval(() => {
+                document.body.style.backgroundColor = (document.body.style.backgroundColor === "black") ? "#222" : "black";
+            }, 500);
         }
     </script>
 </body>
