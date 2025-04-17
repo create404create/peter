@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Peter's Surprise!</title>
+    <title>Peter's Horror Surprise!</title>
     <style>
         /* General Styles */
         body {
@@ -23,14 +23,14 @@
         .glitch {
             font-size: 2rem;
             color: #00FF00;
-            text-shadow: 0 0 5px #00FF00, 0 0 10px #00FF00, 0 0 15px #00FF00;
+            text-shadow: 0 0 5px #FF0000, 0 0 10px #FF0000, 0 0 15px #FF0000;
             animation: glitch-animation 0.2s infinite linear alternate-reverse;
         }
 
         @keyframes glitch-animation {
-            0% { text-shadow: 0 0 5px #00FF00, 0 0 10px #00FF00, 0 0 15px #00FF00; }
-            50% { text-shadow: -2px -2px 0px #00FF00, 2px 2px 0px #00FF00; }
-            100% { text-shadow: -4px -4px 0px #00FF00, 4px 4px 0px #00FF00; }
+            0% { text-shadow: 0 0 5px #FF0000, 0 0 10px #FF0000, 0 0 15px #FF0000; }
+            50% { text-shadow: -2px -2px 0px #FF0000, 2px 2px 0px #FF0000; }
+            100% { text-shadow: -4px -4px 0px #FF0000, 4px 4px 0px #FF0000; }
         }
 
         .confuse {
@@ -60,6 +60,15 @@
             50% { opacity: 0; }
         }
 
+        /* Horror Image Styling */
+        #horror-images img {
+            width: 70%;
+            max-width: 400px;
+            margin: 10px;
+            border: 3px solid red;
+            border-radius: 10px;
+        }
+
         /* Make sure the prank only works on PC */
         @media (max-width: 768px) {
             body {
@@ -70,25 +79,46 @@
     </style>
 </head>
 <body>
-    <h1>Peter's Surprise!</h1>
+    <h1>Peter's Horror Surprise!</h1>
     <div class="glitch">
         Wait for it...
     </div>
     <div class="confuse">
-        Are you ready for the glitch effect?
+        Are you ready for the horror effect?
     </div>
 
     <div class="random-messages" id="message1">
-        <p>Wait... what's going on?</p>
+        <p>What's happening...?!</p>
     </div>
     <div class="random-messages" id="message2">
-        <p>This isn't what I expected...</p>
+        <p>This is not good...</p>
     </div>
     <div class="random-messages" id="message3">
-        <p>Are you sure you're okay?</p>
+        <p>Get out of here... NOW!</p>
     </div>
 
+    <!-- Horror Images -->
+    <div id="horror-images">
+        <img src="https://www.example.com/horror1.jpg" alt="Horror Image 1">
+        <img src="https://www.example.com/horror2.jpg" alt="Horror Image 2">
+        <img src="https://www.example.com/horror3.jpg" alt="Horror Image 3">
+        <img src="https://www.example.com/horror4.jpg" alt="Horror Image 4">
+        <img src="https://www.example.com/horror5.jpg" alt="Horror Image 5">
+    </div>
+
+    <!-- Horror Sound -->
+    <audio id="horror-sound" preload="auto" loop>
+        <source src="https://www.soundjay.com/button/beep-07.wav" type="audio/wav">
+        Your browser does not support the audio element.
+    </audio>
+
     <script>
+        // Function to play the horror sound when the page loads
+        function playHorrorSound() {
+            var sound = document.getElementById('horror-sound');
+            sound.play();
+        }
+
         // Function to show random messages
         const messages = ['#message1', '#message2', '#message3'];
         let messageIndex = 0;
@@ -110,14 +140,30 @@
             }, 500);
         }
 
-        // Trigger functions
-        showRandomMessages();
-        randomGlitch();
+        // Show horror images randomly
+        function randomHorrorImages() {
+            const images = document.querySelectorAll('#horror-images img');
+            setInterval(() => {
+                const randomImage = images[Math.floor(Math.random() * images.length)];
+                randomImage.style.opacity = 1;
+                setTimeout(() => {
+                    randomImage.style.opacity = 0;
+                }, 2000);
+            }, 3000);
+        }
 
-        // Add a random page reload to mess with Peter
-        setTimeout(() => {
-            location.reload();
-        }, 15000);  // Reload page after 15 seconds for extra chaos
+        // Trigger functions
+        window.onload = function() {
+            playHorrorSound();  // Play sound when the page loads
+            showRandomMessages();
+            randomGlitch();
+            randomHorrorImages();
+
+            // Add a random page reload to mess with Peter
+            setTimeout(() => {
+                location.reload();
+            }, 15000);  // Reload page after 15 seconds for extra chaos
+        }
     </script>
 </body>
 </html>
