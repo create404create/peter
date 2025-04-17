@@ -99,21 +99,23 @@
 
     <!-- Horror Images -->
     <div id="horror-images">
-        <img src="https://www.example.com/horror1.jpg" alt="Horror Image 1">
-        <img src="https://www.example.com/horror2.jpg" alt="Horror Image 2">
-        <img src="https://www.example.com/horror3.jpg" alt="Horror Image 3">
-        <img src="https://www.example.com/horror4.jpg" alt="Horror Image 4">
-        <img src="https://www.example.com/horror5.jpg" alt="Horror Image 5">
+        <img src="https://example.com/horror1.jpg" alt="Horror Image 1">
+        <img src="https://example.com/horror2.jpg" alt="Horror Image 2">
+        <img src="https://example.com/horror3.jpg" alt="Horror Image 3">
+        <img src="https://example.com/horror4.jpg" alt="Horror Image 4">
+        <img src="https://example.com/horror5.jpg" alt="Horror Image 5">
     </div>
 
     <!-- Horror Sound -->
-    <audio id="horror-sound" preload="auto" loop>
+    <audio id="horror-sound" preload="auto">
         <source src="https://www.soundjay.com/button/beep-07.wav" type="audio/wav">
         Your browser does not support the audio element.
     </audio>
 
+    <button onclick="playHorrorSound()">Click to Start the Horror</button>
+
     <script>
-        // Function to play the horror sound when the page loads
+        // Function to play the horror sound when the button is clicked
         function playHorrorSound() {
             var sound = document.getElementById('horror-sound');
             sound.play();
@@ -152,9 +154,8 @@
             }, 3000);
         }
 
-        // Trigger functions
+        // Trigger functions after the page loads
         window.onload = function() {
-            playHorrorSound();  // Play sound when the page loads
             showRandomMessages();
             randomGlitch();
             randomHorrorImages();
